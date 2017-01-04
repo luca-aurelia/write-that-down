@@ -1,0 +1,17 @@
+{
+  "name": "alfred-ideas",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alfy": "^0.3.0",
+    "node-notifier": "^4.6.1",
+    "node-trello": "^1.1.2",
+    "open": "0.0.5"
+  }
+}
