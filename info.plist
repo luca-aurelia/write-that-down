@@ -61,7 +61,18 @@
 			</dict>
 		</array>
 		<key>DFEC23B9-8D16-4012-9434-3686421EBC43</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5901609D-24EF-4697-B7CA-BC7993CBB3A5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>EC0443C7-32F6-4FAE-91C5-3A9B951F4844</key>
 		<array>
 			<dict>
@@ -132,6 +143,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./node_modules/.bin/run-node handle-action.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DFEC23B9-8D16-4012-9434-3686421EBC43</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttype</key>
@@ -175,25 +209,20 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./node_modules/.bin/run-node handle-action.js "$1"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>variables</key>
+				<dict>
+					<key>listId</key>
+					<string>{query}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>DFEC23B9-8D16-4012-9434-3686421EBC43</string>
+			<string>218784CB-0933-4076-A2D6-5B9F64C4C1B5</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -216,24 +245,6 @@
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string></string>
-				<key>variables</key>
-				<dict>
-					<key>listId</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>218784CB-0933-4076-A2D6-5B9F64C4C1B5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
 				<string>Selected an action.</string>
 				<key>cleardebuggertext</key>
 				<false/>
@@ -244,6 +255,23 @@
 			<string>alfred.workflow.utility.debug</string>
 			<key>uid</key>
 			<string>8E5BF5DE-04C3-4A82-BEEA-2171544DCD70</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>5901609D-24EF-4697-B7CA-BC7993CBB3A5</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -269,6 +297,13 @@ A new option now exists for Script Filters, "Alfred filters results". This allow
 			<integer>60</integer>
 			<key>ypos</key>
 			<integer>170</integer>
+		</dict>
+		<key>5901609D-24EF-4697-B7CA-BC7993CBB3A5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>840</integer>
+			<key>ypos</key>
+			<integer>200</integer>
 		</dict>
 		<key>6AA671B5-1C8C-40F5-910B-7D2739C02571</key>
 		<dict>

@@ -5,11 +5,11 @@ const { postCard } = require('./trello')
 
 const input = JSON.parse(alfy.input)
 
-const notify = (title, message) => notifier.notify({ title, message })
+const notify = (title, message, url) => notifier.notify({ title, message, open: url })
 
 if (input.action === 'create') {
   postCard(input.data)
-    .then(() => notify('It worked ⚡️', "Your card's now on Trello."))
+    .then(newCard => notify('It worked ⚡️', "Your card's now on Trello.", newCard.url))
     .catch(reason => notify('Oops 🌧', `Hit a problem: ${reason}`))
 } else if (input.action === 'show') {
   open(input.url)
