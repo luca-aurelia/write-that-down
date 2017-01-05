@@ -1,14 +1,11 @@
 const alfy = require('alfy')
-const { getCards } = require('./trello')
+const alfred = require('./alfred')
 
-const formatCard = ({ id, name, url }) => ({
-  title: name,
-  arg: url,
-  quicklookurl: url
-})
+const { listId } = process.env
+const gotCards = alfred.getCards(listId)
+const gotCreateCard = alfred.getCreateCard(alfy.input, listId)
 
-const listId = process.env.listId
-getCards(listId).then(cards => {
-  const items = cards.map(formatCard)
-  alfy.output(items)
+Promise.all([gotCards, gotCreateCard]).then(([cardItems, createCardItem]) => {
+  cardItems.unshift(createCardItem)
+  alfy.output(cardItems)
 })

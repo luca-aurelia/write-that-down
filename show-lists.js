@@ -1,14 +1,4 @@
 const alfy = require('alfy')
-const { getLists } = require('./trello')
+const alfred = require('./alfred')
 
-const formatList = ({ id, name, icon, uid }) => ({
-  title: name,
-  arg: id,
-  icon,
-  uid
-})
-
-getLists().then(lists => {
-  var items = lists.map(formatList)
-  alfy.output(items)
-})
+alfred.getLists().then(listItems => alfy.output(listItems))
