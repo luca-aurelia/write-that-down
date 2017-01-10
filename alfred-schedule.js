@@ -1,44 +1,31 @@
-const PersistentFunctionQueue = require('./persistent-function-queue')
-const alfy = require('alfy')
-const io = require('./alfred-io')
-const db = require('./env-db')
-const log = require('./log')
+const fq = require('./function-queue')
+const server = require('./ipc/server')
 
-const fq = new PersistentFunctionQueue(db)
-
-function step (func) {
-  fq.enqueue(func)
-  return {
-    next: step
-  }
-}
-
-function tick () {
-  let input = alfy.input
+function parse (data) {
+  console.log(`Parsing ${JSON.stringify(data)}`)
   try {
-    if (input !== undefined) input = JSON.parse(input)
+    if (data === undefined) return
+    data = JSON.parse(data)
   } catch (e) {
-    // console.log(`Got error ${e} when parsing JSON.`)
-    // console.log('No biggy. Continuing.')
-  }
-
-  const result = fq.dequeue(input)
-  Promise.resolve(result).then(output => io.output(output, db.serialize()))
-}
-
-function first (func) {
-  // run on the next tick of the event loop
-  setTimeout(tick, 0)
-  return step(func)
-}
-
-function schedule (scheduler) {
-  if (fq.isEmpty()) {
-    log.debug('function queue was empty when scheduling')
-    scheduler(first)
-  } else {
-    tick()
+    console.log('Failed to parse JSON. No biggy.')
+  } finally {
+    return data
   }
 }
 
-module.exports = schedule
+function callNextFunction (input) {
+  console.log(`Calling next function with input ${input}`)
+  const nextFunction = fq.dequeue()
+  return Promise.resolve(nextFunction(input))
+}
+
+function next (func) {
+  fq.enqueue(func)
+  return { next }
+}
+
+server.onWorkflow((data, reply) => {
+  callNextFunction(parse(data)).then(reply)
+})
+
+module.exports = next

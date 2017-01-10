@@ -1,4 +1,4 @@
-const schedule = require('./alfred-schedule')
+const first = require('./alfred-schedule')
 
 function showRegions () {
   const japan = {
@@ -29,16 +29,18 @@ function showPrefectures (region) {
   })
 }
 
-function showCities ([region, prefecture]) {
+function showCities (input) {
   const japan = {
     kanto: {
       gunma: ['annaka', 'maebashi'],
       tochigi: ['ashikaga', 'nasushiobara']
     }
   }
-
-  const cities = (region, prefecture) => japan[region][prefecture]
-  return cities(region, prefecture).map(city => {
+  const [region, prefecture] = input
+  console.log(`showCities got ${input}`)
+  console.log(`region: ${region}`)
+  console.log(`prefecture: ${prefecture}`)
+  return japan[region][prefecture].map(city => {
     return {
       title: city,
       arg: [region, prefecture, city].join(', ')
@@ -46,8 +48,6 @@ function showCities ([region, prefecture]) {
   })
 }
 
-schedule(first =>
-  first(showRegions)
+first(showRegions)
   .next(showPrefectures)
   .next(showCities)
-)

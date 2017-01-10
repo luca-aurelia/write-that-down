@@ -1,13 +1,15 @@
-const schedule = require('./alfred-schedule')
+const first = require('./alfred-schedule')
+const notifier = require('node-notifier')
+const open = require('open')
+const { postCard } = require('./trello')
+const alfy = require('alfy')
+const alfred = require('./alfred')
 
 function showLists () {
-  const alfred = require('./alfred')
   return alfred.getLists()
 }
 
 function showCards () {
-  const alfy = require('alfy')
-  const alfred = require('./alfred')
   const { listId } = process.env
 
   const gotCards = alfred.getCards(listId)
@@ -20,10 +22,6 @@ function showCards () {
 }
 
 function handleAction ({ action, data }) {
-  const notifier = require('node-notifier')
-  const open = require('open')
-  const { postCard } = require('./trello')
-
   const notify = (title, message, url) => notifier.notify({ title, message, open: url })
 
   if (action === 'create') {
@@ -35,11 +33,9 @@ function handleAction ({ action, data }) {
   }
 }
 
-schedule(first =>
-  first(showLists)
-  .next(showCards)
-  .next(handleAction)
-)
+first(showLists)
+.next(showCards)
+.next(handleAction)
 
 // enqueues functions in the PersistentFunctionQueue
 // fq.enqueue(showLists)
