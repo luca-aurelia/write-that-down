@@ -1,5 +1,5 @@
 {
-  "name": "alfred-ideas",
+  "name": "write-that-down",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "alfy": "^0.3.0",
+    "json-store": "0.0.1",
+    "log": "^1.4.0",
     "node-notifier": "^4.6.1",
     "node-trello": "^1.1.2",
     "open": "0.0.5"

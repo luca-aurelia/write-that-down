@@ -12,7 +12,7 @@ const formatList = ({ id, name, icon, uid }) => ({
 
 const formatCard = ({ id, name, url }) => ({
   title: name,
-  arg: JSON.stringify({ action: 'show', url }),
+  arg: JSON.stringify({ action: 'show', data: { url } }),
   quicklookurl: url
 })
 
